@@ -1,0 +1,116 @@
+body
+{
+    background-image: url('Advanced\ Programming/img-2.jpg');
+    background-attachment: fixed; /* 固定背景图片 */
+    background-size:cover;
+    background-position: center; /* 设置背景图片居中 */
+    background-repeat: no-repeat; /* 禁止背景图片重复 */
+}
+
+h1 
+{
+    color: rgb(255, 0, 255, 0.8);
+    text-align: center;
+    font-size: 50px;
+}
+
+h2
+{
+    color: rgba(255, 0, 0, 0.5);
+    text-align:left;
+    font-size: 40px;
+}
+
+h3
+{
+    color: rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size: 30px;
+}
+
+p{
+    color: rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size: 20px;
+}
+
+span{
+    color: rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size: 20px;
+}
+
+div{
+    color: rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size: 20px;
+}
+
+ul
+{
+    font-size: 20px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: rgb(0, 183, 255);
+    text-decoration: underline;
+}
+
+
+.Outline_s
+{
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+.Outline_s:hover {
+    color: rgb(0, 153, 255);
+    text-decoration:underline;
+}
+
+#back-to-top {
+    display: none; /* 初始状态隐藏按钮 */
+    position: fixed; /* 固定在屏幕上 */
+    bottom: 10px; /* 距离底部 20px */
+    right: 10px; /* 距离右侧 20px */
+    background-color: #2fff00a2; /* 背景颜色 */
+    color: #ffffff; /* 文字颜色 */
+    border: none; /* 移除边框 */
+    border-radius: 20%; /* 圆角边框 */
+    cursor: pointer; /* 鼠标指针样式为手型 */
+    padding: 15px; /* 按钮内边距 */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #back-to-top:hover {
+    background-color: #2fff00; /* 鼠标悬停时的背景颜色 */
+  }
+
+.header 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('Advanced\ Programming/img-6.png'); /* 背景图片的路径 */
+    background-size: cover; /* 背景图片尺寸适应头部大小 */
+    background-position: center bottom; /* 背景图片居中 */
+    color: #fff; /* 文字颜色为白色 */
+    padding: 20px;
+    z-index: 999;
+    
+}
+
+.grandstander {
+    font-family: "Grandstander", cursive;
+    font-size: 50px;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
