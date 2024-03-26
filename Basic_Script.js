@@ -41,7 +41,7 @@ class MarkdownLoader {
                   if (xhr.status === 200) {
                       var markdownText = xhr.responseText;
                       var converter = new showdown.Converter({
-                          extensions: ['mathjax'],
+                          // extensions: ['mathjax'],
                           headerIds: true,
                           tables: true,
                           ghCompatibleHeaderId: true,
