@@ -1,10 +1,11 @@
 body
 {
-    background-image: url('Advanced\ Programming/img-2.jpg');
-    background-attachment: fixed; /* 固定背景图片 */
+    background-image: url('Advanced\ Programming/img-8.png');
+    background-attachment: fixed;
     background-size:cover;
-    background-position: center; /* 设置背景图片居中 */
-    background-repeat: no-repeat; /* 禁止背景图片重复 */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-color: rgb(221, 216, 171); */
 }
 
 h1 
@@ -19,6 +20,7 @@ h2
     color: rgba(255, 0, 0, 0.5);
     text-align:left;
     font-size: 40px;
+    scroll-margin-top: 160px;
 }
 
 h3
@@ -26,6 +28,12 @@ h3
     color: rgba(0, 0, 0, 1);
     text-align:left;
     font-size: 30px;
+    scroll-margin-top: 160px;
+}
+
+h4
+{
+    font-size: 25px;
 }
 
 p{
@@ -79,7 +87,7 @@ a:hover
     position: fixed; /* 固定在屏幕上 */
     bottom: 10px; /* 距离底部 20px */
     right: 10px; /* 距离右侧 20px */
-    background-color: #2fff00a2; /* 背景颜色 */
+    background-color: #00ddffa2; /* 背景颜色 */
     color: #ffffff; /* 文字颜色 */
     border: none; /* 移除边框 */
     border-radius: 20%; /* 圆角边框 */
@@ -98,7 +106,7 @@ a:hover
     top: 0;
     left: 0;
     width: 100%;
-    background-image: url('Advanced\ Programming/img-6.png'); /* 背景图片的路径 */
+    background-image: url('Advanced\ Programming/img-9.png'); /* 背景图片的路径 */
     background-size: cover; /* 背景图片尺寸适应头部大小 */
     background-position: center bottom; /* 背景图片居中 */
     color: #fff; /* 文字颜色为白色 */
@@ -114,3 +122,45 @@ a:hover
     font-weight: <weight>;
     font-style: normal;
 }
+
+table {
+    border-collapse: collapse;
+    width: auto;
+    margin: 0 auto;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+th, td {
+    border: 2px solid #000000;
+    text-align:start;
+    padding: 8px;
+}
+th {
+    background-color: #00ff44af;
+}
+
+pre
+{
+    font-size: 18px;
+    border: 1px solid #000000;
+    width: auto;
+    text-align: left;
+    margin: 1;
+    padding-left: 0;
+}
+
+.hljs {
+    background: transparent !important; /* 移除背景色 */
+    color: #333; /* 保持文本颜色可读 */
+  }
+  
+  /* 如果你还需要调整行号的颜色和背景 */
+  .hljs-ln-numbers {
+    background: transparent !important; /* 如果启用行号，移除行号背景色 */
+    color: #999; /* 行号颜色 */
+  }
+  
+  /* 如果你想保留一些内边距 */
+  .hljs > pre {
+    padding: 0.5em;
+    border-radius: 3px; /* 可以保持圆角边框 */
+  }

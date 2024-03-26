@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Programming</title>
+    <title>Data Types</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Note_Style.css">
+    <script src="../Basic_Script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="../import/node_modules/showdown/dist/showdown.min.js"></script>
+    <script src="../import/showdown-full-extensions.js"></script>
+    <script src="../import/mathjax-extension.js"></script>
+    <script src="../import/node_modules/marked/marked.min.js"></script>
+    
+
 </head>
 <body>
     <a href="Advanced_Programming.html">
@@ -21,8 +28,27 @@
         </div>
     </a>
     <h1>&nbsp;</h1><br>
-    <h2>Variables and data types</h2>
-    concept
+    <h1>Variables and data types</h1>
+    
+    <div id="markdown-content">
+      <!-- Markdown content will be inserted here -->
+  </div>
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css"> 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+
+  <script>
+      // 创建 MarkdownLoader 实例并调用 loadAndConvert 方法
+      document.addEventListener('DOMContentLoaded', function() {
+          var markdownLoader = new MarkdownLoader('1. Data Types.md', 'markdown-content');
+          markdownLoader.loadAndConvert();
+
+
+      });
+  </script>
+  
+  <p>这是一个MathJax的数学表达式：\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\to\] </p>
+
     <div>
         <br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br>

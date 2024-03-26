@@ -21,3 +21,51 @@ function scrollToTop() {
   };
   scrollToTop();
 }
+
+
+
+
+// MarkdownLoader.js
+class MarkdownLoader {
+  constructor(url, targetElementId) {
+      this.url = url;
+      this.targetElementId = targetElementId;
+  }
+
+  async loadAndConvert() {
+      return new Promise((resolve, reject) => {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', this.url, true);
+          xhr.onreadystatechange = () => {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                      var markdownText = xhr.responseText;
+                      var converter = new showdown.Converter({
+                          extensions: ['mathjax'],
+                          headerIds: true,
+                          tables: true,
+                          ghCompatibleHeaderId: true,
+                      });
+
+                      var htmlContent = converter.makeHtml(markdownText);
+
+                      htmlContent = htmlContent.replace(/(?!\$\$)\$(.*?)\$/g, '<span class="math-inline">\\($1\\)</span>');
+                    
+                      document.getElementById(this.targetElementId).innerHTML = htmlContent;
+                      resolve(htmlContent); 
+                      this.highlightCodeBlocks(); 
+                  } else {
+                      reject(xhr.statusText);
+                  }
+              }
+          };
+          xhr.send();
+      });
+  }
+
+  highlightCodeBlocks() {
+      hljs.highlightAll();
+      MathJax.typeset();
+  }
+}
+

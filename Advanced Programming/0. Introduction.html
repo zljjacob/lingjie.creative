@@ -10,9 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Note_Style.css">
     <script src="../Basic_Script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    
+
 </head>
 <body>
     <a href="Advanced_Programming.html">
@@ -22,125 +26,24 @@
         </div>
     </a>
     <h1>&nbsp;</h1><br>
-    <h2>Introduction</h2>
-    <h3>Outline</h3>
-    <p>
-        <a href="#1.1"><span class="Outline_s">1.1 Welcome</span></a><br>
-        <a href="#1.2"><span class="Outline_s">1.2 Von Neumann Architecture</span></a><br>
-        <a href="#1.3"><span class="Outline_s">1.3 Scientific Computing perspective</span></a><br>
-        <a href="#1.4"><span class="Outline_s">1.4 Be better</span></a><br>
-    </p>
-    <br>
-    <h3 id="1.1">1.1 Welcome</h3>
-    <p>
-        <span>
-            This lecture foceses on C++.
-            C++ is a high-level, general-purpose programming language 
-            created by Danish computer scientist Bjarne Stroustrup.
-            If you have no idea what exactly C++ is, check wikipedia: <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank">&#128279</a>
-        </span>
-    </p>
-    <br>
-    <h3 id="1.2">1.2 Von Neumann Architecture</h3>
-    <p>
-        <span>
-            <ul>
-                <li>Control unit</li>
-                <li>Arithmetic logic unit with processor registers (CPU)</li>
-                <li>Memory for both data and instructions</li>
-                <li>IO devices</li>
-                <li>Bus: connects everything</li>
-            </ul>
-        </span>
-    </p>
-    <br>
-    <h3 id="1.3">1.3 Scientific Computing perspective</h3>
-    <p>
-        <div style="text-align: center; font-size: 20px;">
-            physical phenomena \(\overset{modeling}{\rightarrow}\) 
-            equation \(\overset{discretization}{\rightarrow}\) 
-            algorithm \(\overset{implementation}{\rightarrow}\) 
-            code
-        </div>
-    </p>
-    <p>
-        <div>
-            <b>Computational applications:</b>
-            <ul>
-                <li>Computational Fluid Dynamics</li>
-                <li>Fluid-Structure Interaction</li>
-                <li>Molecular Dynamics</li>
-                <li>Astrophysics</li>
-                <li>Plasma Physics</li>
-                <li>Quantum Computing</li>
-                <li>Uncertainty Quantification</li>
-                <li>Machine Learning (and more)</li>
-            </ul>
-        </div>
-    </p>
-    <p>
-        <div>
-            <b>What is special in Scientific Computing?</b>
-            <ul>
-                <li>Small to very large scale computations</li>
-                <li>Heterogeneous (parallel) hardware</li>
-                <li>Sustainability</li>
-            </ul>
-        </div>
-    </p>
-    <p>
-        <div>
-            <b>Why C++?</b><br>
-            There are so many languages, why C++?
-            <ul>
-                C++
-                <li>is very actively developed, modern C++ is easier</li>
-                <li>compiled &rarr; fast</li>
-                <li>statically typed &rarr; safe</li>
-                <li>general-purpose (object-oriented, generic, functional, parallel, ...)</li>
-                <li>large collection of numerical libraries</li>
-                <li>compatible with C & Fortran &rarr; reuse numerical libraries</li>
-            </ul>
-        </div>
-    </p>
-    <p>
-        <div>
-            <b>But who uses C++?</b>
-            Scientific Computing projects in C++:
-            <ul>
-                <li>Linear Algebra: Eigen, PETSc, Trilinos, Blaze</li>
-                <li>PDE frameworks: OpenFOAM, deal.II, SU2, Dolfin (FEniCS)</li>
-                <li>Molecular Dynamics: LAMMPS, GROMACS</li>
-                <li>Machine Learning: <a href="https://www.tensorflow.org/">TensorFlow</a>, <a href="https://pytorch.org/">PyTorch</a></li>
-                <li>large collection of numerical libraries</li>
-                <li>More: elsa (tomographic reconstruction), SeqAn3 (biological sequence analysis), Atlas (climate modelling)</li>
-            </ul>
-        </div>
-    </p>
-    <br>
-    <h3 id="1.4">1.4 Be better</h3>
-    <p>
-        <div>
-            <b>Stay tuned to learn</b>
-            <ul>
-                <li>How data types work in C++ and how are modern data types better</li>
-                <li>How to get safe, accurate, and fast computations</li>
-                <li>How to structure your software project</li>
-                <li>How to save runtime with build-time computations</li>
-                <li>How to represent complex data and functionality using objects</li>  
-                <li>How to use templates and the Standard Library to keep your code simple and fast</li>
-                <li>How to predict and optimize the performance of your code</li>
-                <li>How to work with legacy codes and prepare for the future</li>       
-            </ul>
-        </div>
-    </p>
-    <div>
-        <span style="">
-            start
-        </span>
+
+    <h1>Introduction</h1>
+
+    <div id="markdown-content">
+        <!-- Markdown content will be inserted here -->
     </div>
+
+    <script>
+        // 创建 MarkdownLoader 实例并调用 loadAndConvert 方法
+        document.addEventListener('DOMContentLoaded', function() {
+            var markdownLoader = new MarkdownLoader('0. Introduction.md', 'markdown-content');
+            markdownLoader.loadAndConvert();
+        });
+    </script>
+
+    
     
     <!-- HTML按钮 -->
-    <button onclick="scrollToTop()" id="back-to-top" title="回到顶部">↑</button>
+    <button onclick="scrollToTop()" id="back-to-top" title="Back to Top">↑</button>
 </body>
 </html>

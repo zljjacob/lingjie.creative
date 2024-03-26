@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="test.js"></script>
+    <script src="../import/node_modules/showdown/dist/showdown.min.js"></script>
+    <script src="../import/showdown-full-extensions.js"></script>
+</head>
+<body>
+    
+    <p>这是一个MathJax的数学表达式: \[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\to\] </p>
+
+    <h1>Markdown 数学公式转换示例</h1>
+    <div id="markdown-content">
+      <!-- 这里将显示 Markdown 转换后的 HTML 内容 -->
+    </div>
+  
+    <script>
+      // JavaScript 代码，用于将 Markdown 中的数学公式转换为 HTML 格式
+      function convertMarkdownMathToHTML(markdownText) {
+        // 替换行内公式
+        markdownText = markdownText.replace(/\$(.*?)\$/g, '<span class="math-inline">\\($1\\)</span>');
+        markdownText = markdownText.replace(/\\\((.*?)\\\)/g, '<span class="math-inline">\\($1\\)</span>');
+  
+        // 替换块级公式
+        markdownText = markdownText.replace(/\$\$(.*?)\$\$/g, '<div class="math-block">\\[$1\\]</div>');
+        markdownText = markdownText.replace(/\\\[(.*?)\\\]/g, '<div class="math-block">\\[$1\\]</div>');
+  
+        return markdownText;
+      }
+  
+      // 示例 Markdown 文本
+      var markdownText = `
+  这是一个行内公式：$E=mc^2$
+  
+  这是一个块级公式：
+  
+  $$
+  \\frac{1}{n^{2}}
+  $$`;
+  
+      // 转换 Markdown 中的数学公式为 HTML 格式
+      var htmlText = convertMarkdownMathToHTML(markdownText);
+  
+      // 将转换后的 HTML 插入到页面中
+      document.getElementById('markdown-content').innerHTML = htmlText;
+    </script>
+    
+</body>
+</html>
