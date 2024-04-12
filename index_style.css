@@ -1,0 +1,64 @@
+html, body {
+  overflow: hidden;
+  margin: 0;
+  background-color: #333333;
+  display:grid;
+  align-items: center;
+  justify-content: center;
+}
+
+html {
+  -webkit-tap-highlight-color: rgb(10, 39, 45);
+}
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+  color: #000000;
+}
+
+a {
+  color: rgb(241, 246, 214); /* 将链接文字颜色设置为蓝色 */
+  text-decoration: none; /* 可选：去除链接的下划线 */
+  
+}
+
+#app {
+  position: absolute;
+  width: auto;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  margin-left: -160px;
+  margin-top: -160px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  color: rgb(0, 145, 230);
+  font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  letter-spacing: 3px;
+  /* text-transform: uppercase; */
+  margin: 20px 0px 12px;
+  left: 4px;
+}
+
+#particles-js{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-image: url(''); */
+  /* background-size: cover; */
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+
+
