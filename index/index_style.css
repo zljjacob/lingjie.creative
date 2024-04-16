@@ -1,7 +1,7 @@
 html, body {
   overflow: hidden;
   margin: 0;
-  background-color: #333333;
+  background-color: rgb(9, 19, 19);
   display:grid;
   align-items: center;
   justify-content: center;
@@ -17,19 +17,27 @@ body {
 }
 
 a {
-  color: rgb(241, 246, 214); /* 将链接文字颜色设置为蓝色 */
+  color: rgb(193, 231, 231); /* 将链接文字颜色设置为蓝色 */
   text-decoration: none; /* 可选：去除链接的下划线 */
-  
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+a:hover {
+  color: rgb(209, 255, 124); /* 鼠标悬停时链接文字颜色变为蓝色 */
 }
 
 #app {
-  position: absolute;
+  position:absolute;
   width: auto;
   text-align: center;
   top: 50%;
   left: 50%;
-  margin-left: -160px;
-  margin-top: -160px;
+  transform: translate(-50%, -50%);
+  /* margin-left: -160px;
+  margin-top: -160px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -52,12 +60,17 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0, 0, 0);
-  background-image: url(''); */
+
+  background-image: url('');
+  background-size: cover;
   /* background-size: cover; */
-  background-position: 50% 50%;
+  background-position: 30% 20%;
   background-repeat: no-repeat;
   z-index: -1;
+
+  width: 100%;
+  height: 100%;
+  /* pointer-events: none; */
 }
 
 

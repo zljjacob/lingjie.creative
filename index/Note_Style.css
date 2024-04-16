@@ -1,6 +1,6 @@
 body
 {
-    background-image: url('Advanced\ Programming/img-8.png');
+    background-image: url('./course_img/img-8.png');
     background-attachment: fixed;
     background-size:cover;
     background-position: center;
@@ -106,7 +106,7 @@ a:hover
     top: 0;
     left: 0;
     width: 100%;
-    background-image: url('Advanced\ Programming/img-9.png'); /* 背景图片的路径 */
+    background-image: url('course_img/img-9.png'); /* 背景图片的路径 */
     background-size: cover; /* 背景图片尺寸适应头部大小 */
     background-position: center bottom; /* 背景图片居中 */
     color: #fff; /* 文字颜色为白色 */
@@ -163,4 +163,24 @@ pre
   .hljs > pre {
     padding: 0.5em;
     border-radius: 3px; /* 可以保持圆角边框 */
+  }
+
+  #footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 25px 0;
+    background-color: rgba(0, 0, 0, 0.089);
+    width: 50%;
+    border-radius: 35px 35px 0 0; /* 圆角 */
+  }
+  
+  #home-link {
+    color: #00545a;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
   }
