@@ -41,10 +41,12 @@ class MarkdownLoader {
                   if (xhr.status === 200) {
                       var markdownText = xhr.responseText;
                       var converter = new showdown.Converter({
-                          // extensions: ['mathjax'],
+                          //extensions: ['math'],
+                          
                           headerIds: true,
                           tables: true,
                           ghCompatibleHeaderId: true,
+                          //disableForced4SpacesIndentedSublists: true,
                       });
 
                       var htmlContent = converter.makeHtml(markdownText);
