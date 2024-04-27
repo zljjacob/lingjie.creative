@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Wissenswertes über Bilder}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Darstellung von Bildern}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Bildgradient}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Der Gradient eines Bildes}{4}{subsubsection.1.2.1}%
+\contentsline {paragraph}{Wie schätzt man den Gradienten?}{4}{section*.7}%
+\contentsline {subsubsection}{\numberline {1.2.2}Diskretes und kontinuierliches Signal}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Die diskrete Ableitung}{5}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Zweidimensionale Rekonstruktion}{6}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Zweidimensionale Ableitung}{6}{subsubsection.1.2.5}%
+\contentsline {subsubsection}{\numberline {1.2.6}Endliche Approximation des Gaußfilters}{7}{subsubsection.1.2.6}%
+\contentsline {subsubsection}{\numberline {1.2.7}Sobel-Filter}{8}{subsubsection.1.2.7}%
+\contentsline {subsubsection}{\numberline {1.2.8}Zusammenfassung}{8}{subsubsection.1.2.8}%
+\contentsline {subsection}{\numberline {1.3}Merkmalspunkte-Ecken und Kanten}{9}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Ecken und Kanten}{9}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Harris Ecken- und Kantendetektor}{9}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Praktische Realisierung des Harris-Detektors}{11}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Zusammenfassung}{12}{subsubsection.1.3.4}%

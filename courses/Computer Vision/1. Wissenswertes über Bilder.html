@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1-1 Darstellung</title>
+    <title>Wissenswertes über Bilder</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <link rel="stylesheet" href="../../index/Note_Style.css">
@@ -16,9 +16,27 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css"> 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
 
-</script>
+    <script>
+        MathJax.config({
+          tex: {
+            inline: true,
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'svg'],
+          },
+          svg: {
+            mathspace: 90
+          },
+          options: {
+            renderActions: {
+              latex: {
+                element: document.body,
+              },
+            },
+          },
+        });
+      </script>
 </head>
 <body>
+
     <a href="Computer Vision.html">
         <div class="header">
             <h1 class="grandstander">Computer Vision</h1>
@@ -26,19 +44,19 @@
         </div>
     </a>
     <h1>&nbsp;</h1><br>
-    <h1>Darstellung</h1>
+    <h1>Wissenswertes über Bilder</h1>
     
     <div id="markdown-content">
       <!-- Markdown content will be inserted here -->
   </div>
+
+
 
   <script>
       // 创建 MarkdownLoader 实例并调用 loadAndConvert 方法
       document.addEventListener('DOMContentLoaded', function() {
           var markdownLoader = new MarkdownLoader('1. Wissenswertes über Bilder.md', 'markdown-content');
           markdownLoader.loadAndConvert();
-
-
       });
   </script>
   

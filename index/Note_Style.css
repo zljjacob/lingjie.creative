@@ -7,6 +7,7 @@ body
     background-repeat: no-repeat;
     margin-left: 20px;
     /* background-color: rgb(221, 216, 171); */
+
 }
 
 h1 
@@ -185,3 +186,22 @@ pre
     font-size: 25px;
     font-family:Georgia, 'Times New Roman', Times, serif;
   }
+
+hr {
+    width: 95%; /* 设置宽度为父元素宽度的80% */
+    height: 5px; /* 设置高度为3像素 */
+    border: none; /* 清除默认边框 */
+    background: linear-gradient(to left, rgba(152, 124, 185, 0), #b97c9b, rgba(184, 185, 124, 0)); /* 设置背景为渐变 */
+    opacity: 1; /* 设置整体透明度 */
+}
+
+
+img {
+    display: block; /* 将图片转换为块级元素 */
+    margin: 0 auto; /* 设置左右边距为 auto，使其水平居中 */
+    border-radius: 10px; /* 设置圆角边框 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.164); /* 添加阴影效果 */
+}
+
+
+

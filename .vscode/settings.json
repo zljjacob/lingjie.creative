@@ -1,3 +1,4 @@
 {
-    "editor.linkedEditing": true
+    "editor.linkedEditing": true,
+    "livePreview.defaultPreviewPath": "/courses/Computer Vision/1. Wissenswertes über Bilder.html"
 }
