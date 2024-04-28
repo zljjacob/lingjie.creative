@@ -465,4 +465,153 @@ Ableitung in x-Richtung
     \end{itemize}
 \end{itemize}
 
+\subsection{Korrespondenzschätzung für Merkmalspunkte}
+
+\subsubsection{Korrespondenzschätzung}
+\paragraph*{Problemstellung}
+\begin{itemize}
+  \item Gegeben sind zwei Bilder $I_1:\Omega_1\to\mathbb{R}, I_2:\Omega_2\to\mathbb{R}$ derselben 3D-Szene
+  \item Finde Paare von Bildpunkten $(x^{(i)},y^{(i)})\in \Omega_1\times\Omega_2$, die zu gleichen 3D-Punkten korrespondieren
+\end{itemize}
+
+\begin{itemize}
+  \item In dieser Session: Korrespondenzen für Merkmalspunkte in $I_1$ und $I_2$
+  \item Habe Merkmalspunkte $\{x_1,...,x_n\}\subset\Omega_1$ und $\{y_1,...,y_n\}\subset\Omega_2$
+  \item Finde passende Paare von Merkmalspunkten
+\end{itemize}
+
+\subsubsection{Sum of squared differences (SSD)}
+\paragraph*{Formelle Beschreibung}
+\begin{itemize}
+  \item Betrachte Bildausschnitte $V_i$ um $x_i$ und $W_i$ um $y_i$ in Matrixdarstellung und vergleiche die Intensitäten
+  \begin{figure}[htbp]
+      \centering
+      \includegraphics[scale=0.6]{../img/1-14.png}
+      \label{img/1-14}
+  \end{figure}
+  \item Ein Kriterium: $d(V,W)=||V-W||_F^2$
+  \item Dabei ist $||A||_F^2=\sum\limits_{kl}A_{kl}^2$ die quadrierte Frobeniusnorm
+  \item Finde zu $V_i$ das $W_j$ mit $j=\arg_{k=1,...,n}\min d(V_i,W_k)$
+  \item Annahme: Wenn $W_j$ zu $V_i$ passt, dann auch umgekehrt
+\end{itemize}
+\paragraph*{Änderungen der Beleuchtung oder Drehungen}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{../img/1-15.png}
+    \label{img/1-15}
+\end{figure}
+\begin{itemize}
+  \item Normierung von Intensität und Orientierung benötigt!
+\end{itemize}
+
+\subsubsection{Rotationsnormierung}
+\section*{mittels Gradientenrichtung}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{../img/1-16.png}
+    \label{img/1-16}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{../img/1-17.png}
+    \label{img/1-17}
+\end{figure}
+
+\begin{itemize}
+  \item Vorverarbeitung:
+    \begin{enumerate}
+      \item Bestimme Gradienten in allen Merkmalspunkten.
+      \item Rotiere Regionen um Merkmalspunkte so, dass Gradient in eine Richtung zeigt.
+      \item Extrahiere $V,W$ aus rotierten Regionen.
+    \end{enumerate}
+\end{itemize}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=1]{../img/1-18.png}
+    \label{img/1-18}
+\end{figure}
+
+\subsubsection{Bias and Gain Modell}
+\paragraph*{Modellierung von Kontrast und Helligkeit}
+
+\begin{itemize}
+  \item Skalierung der Intensitätswerte (Gain) mit $\alpha$
+  \item Verschiebung der Intensitätswerte (Bias) mit $\beta$.
+  \item Gain-Modell: $W\approx\alpha V$
+  \item Bias-Modell: $W\approx V+\beta\mathbf{1}\mathbf{1}^\top\;\;\;\;\mathbf{1}=(1,...,1)^\top$ 
+  \item Bias-and-Gain Modell: $W\approx\alpha V+\beta \mathbf{1} \mathbf{1}^\top$
+\end{itemize}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{../img/1-19.png}
+    \label{img/1-19}
+\end{figure}
+
+\paragraph*{Berechnung des Mittelwerts}
+\begin{itemize}
+  \item Mittelwertbildung der Intensität
+  \begin{align*}
+      \bar W & = \frac{1}{N}(\mathbf{1}\mathbf{1}^\top W\mathbf{1}\mathbf{1}^\top) \\
+      & \approx \frac{1}{N}(\mathbf{1}\mathbf{1}^\top (\alpha V+\beta \mathbf{1}\mathbf{1}^\top)\mathbf{1}\mathbf{1}^\top) \\
+      & = \alpha\frac{1}{N}(\mathbf{1}\mathbf{1}^\top V\mathbf{1}\mathbf{1}^\top)+\beta\mathbf{1}\mathbf{1}^\top \\
+      & = \alpha\bar V+\beta\mathbf{1}\mathbf{1}^\top
+  \end{align*}
+  \item Subtraktion der Mittelwertmatrix
+  \begin{align*}
+      W-\bar W & \approx\alpha V+\beta\mathbf{1}\mathbf{1}^\top-(\alpha\bar V+\beta\mathbf{1}\mathbf{1}^\top) \\
+      & =\alpha(V-\bar V)
+  \end{align*}
+\end{itemize}
+
+\paragraph*{Berechnung der Standardabweichung}
+\begin{itemize}
+  \item Standardabweichung der Intensität
+  \begin{align*}
+      \sigma(W) & =\;\sqrt[]{\frac{1}{N-1}||W-\bar W||_F^2} \\
+      & =\;\sqrt[]{\frac{1}{N-1}\text{tr}((W-\bar W)^]\top (W-\bar W))} \\
+      & \approx \;\sqrt[]{\frac{1}{N-1}\text{tr}(\alpha(V-\bar V)^\top\alpha(V-\bar V))} \\
+      & =\;\alpha\sigma(V)
+  \end{align*}
+\end{itemize}
+
+\paragraph*{Kompensation von Bias und Gain}
+\begin{itemize}
+    \item Normalisierung der Bildsegmente durch
+    \begin{itemize}
+        \item Subtraktion des Mittelwertes.
+        \item Division durch Standardabweichung.
+        \begin{align*}
+            W_n:= & \;\frac{1}{\sigma(W)}(W-\bar W) \\
+            \approx & \;\frac{1}{\alpha\sigma(V)}(\alpha(V-\bar V)) \\
+            = & \;\frac{1}{\sigma (V)}(V-\bar V) \\
+            = & \;V_n
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Normalized Cross Correlation (NCC)}
+\paragraph*{Herleitung aus SSD}
+\begin{itemize}
+  \item SSD von zwei normalisierten Bildsegmenten $||V_n-W_n||_F^2=2(N-1)-2\text{tr}(W_n^\top V_n)$
+  \item Die Normalized Cross Correlation der beiden Bildsegmente ist definiert als $\frac{1}{N-1}\text{tr}(W_n^\top V_n)$
+  \item Es gilt -1≤NCC≤1
+  \item Zwei normalisierte Bildsegmente sind sich ähnlich, wenn
+  \begin{itemize}
+      \item SSD klein (wenig Unterschiede)
+      \item NCC nahe bei +1 (hohe Korrelation)
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Zusammenfassung}
+
+\begin{itemize}
+  \item Finde Merkmale in Bild 1 und Bild 2
+  \item Kompensiere Rotation durch Ausrichten des Gradienten für jeden Merkmalspunkt
+  \item Extrahiere Bildsegment um jeden Merkmalspunkt.
+  \item Beleuchtungskompensation durch Normierung der Bildsegmente.
+  \item Vergleiche die normalisierten Bildsegmente durch SSD oder NCC.
+\end{itemize}
+
+
+
 \end{document}

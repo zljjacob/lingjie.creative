@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.8)  27 APR 2024 17:49
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.3.8)  28 APR 2024 15:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -760,7 +760,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-]
+] [2]
 File: ../img/1-1.png Graphic file (type bmp)
 <../img/1-1.png>
 File: ../img/1-2.png Graphic file (type bmp)
@@ -793,7 +793,25 @@ File: ../img/1-12.png Graphic file (type bmp)
  [8]
 File: ../img/1-13.png Graphic file (type bmp)
 <../img/1-13.png>
- [9] [10] [11] [12] [13] (./Computer Vision.aux)
+ [9] [10] [11] [12]
+File: ../img/1-14.png Graphic file (type bmp)
+<../img/1-14.png>
+File: ../img/1-15.png Graphic file (type bmp)
+<../img/1-15.png>
+ [13]
+File: ../img/1-16.png Graphic file (type bmp)
+<../img/1-16.png>
+File: ../img/1-17.png Graphic file (type bmp)
+<../img/1-17.png>
+File: ../img/1-18.png Graphic file (type bmp)
+<../img/1-18.png>
+ [14]
+File: ../img/1-19.png Graphic file (type bmp)
+<../img/1-19.png>
+ [15] [16]
+Missing character: There is no ≤ (U+2264) in font [lmroman12-regular]:mapping=tex-text;!
+Missing character: There is no ≤ (U+2264) in font [lmroman12-regular]:mapping=tex-text;!
+[17] (./Computer Vision.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -802,12 +820,12 @@ Package rerunfilecheck Info: File `"Computer Vision".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 26204 strings out of 474773
- 561165 string characters out of 5757730
- 1932842 words of memory out of 5000000
- 47907 multiletter control sequences out of 15000+600000
- 567475 words of font info for 88 fonts, out of 8000000 for 9000
+ 26272 strings out of 474773
+ 562498 string characters out of 5757730
+ 1936842 words of memory out of 5000000
+ 47965 multiletter control sequences out of 15000+600000
+ 567499 words of font info for 91 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,10n,97p,550b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,15n,97p,550b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Computer Vision.pdf (14 pages).
+Output written on Computer Vision.pdf (19 pages).
