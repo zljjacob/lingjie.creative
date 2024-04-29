@@ -1,0 +1,52 @@
+\documentclass[12pt, a4paper, oneside, justified]{article}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\geometry{
+    a4paper, % 页面尺寸
+    left=3cm, % 左边距
+    right=3cm, % 右边距
+    top=3cm, % 上边距
+    bottom=3cm, % 下边距
+}
+
+\title{课程名称}
+\author{Lingjie Zhang}
+\date{2024 SS}
+
+\renewcommand{\contentsname}{Contents}
+
+% 修改图片标签名称为 "img"
+\renewcommand{\figurename}{Figure}
+
+% 修改表格标签名称为 "table"
+\renewcommand{\tablename}{Table}
+
+% 在每个章节重置图片计数器
+\counterwithin{figure}{section}
+
+\setlength{\parskip}{1em}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    \textbf{This course is based on the lecture 这里填课程 of Technical University of Munich}
+\end{center}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+
+% Contents from here
+% 从这里开始往下写
+abcdefg
+
+\end{document}

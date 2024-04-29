@@ -29,6 +29,8 @@
 % 在每个章节重置图片计数器
 \counterwithin{figure}{section}
 
+\setlength{\parskip}{1em}
+
 \begin{document}
 \maketitle
 
@@ -374,7 +376,7 @@ Ableitung in x-Richtung
     \end{bmatrix}
     V^\top
     $$
-    mit $VV^\top =I_2$ und den Eigenwerten $\lambda_1\le \lambda_2\le 0$
+    mit $VV^\top =I_2$ und den Eigenwerten $\lambda_1\ge \lambda_2\ge 0$
     \item Änderung in Abhängigkeit der Eigenvektoren: $V=[v_1,v_2]$
     $$
     S(u)\approx u^\top G(x)u=\lambda_1(u^\top v_1)^2+\lambda_2(u^\top v_2)^2
@@ -472,6 +474,11 @@ Ableitung in x-Richtung
 \begin{itemize}
   \item Gegeben sind zwei Bilder $I_1:\Omega_1\to\mathbb{R}, I_2:\Omega_2\to\mathbb{R}$ derselben 3D-Szene
   \item Finde Paare von Bildpunkten $(x^{(i)},y^{(i)})\in \Omega_1\times\Omega_2$, die zu gleichen 3D-Punkten korrespondieren
+  \begin{figure}[htbp]
+      \centering
+      \includegraphics[scale=0.6]{../img/1-20.png}
+      \label{img/1-20}
+  \end{figure}
 \end{itemize}
 
 \begin{itemize}
@@ -505,7 +512,16 @@ Ableitung in x-Richtung
 \end{itemize}
 
 \subsubsection{Rotationsnormierung}
-\section*{mittels Gradientenrichtung}
+\paragraph*{mittels Gradientenrichtung}
+
+\begin{itemize}
+  \item Vorverarbeitung:
+    \begin{enumerate}
+      \item Bestimme Gradienten in allen Merkmalspunkten.
+      \item Rotiere Regionen um Merkmalspunkte so, dass Gradient in eine Richtung zeigt.
+      \item Extrahiere $V,W$ aus rotierten Regionen.
+    \end{enumerate}
+\end{itemize}
 \begin{figure}[htbp]
     \centering
     \includegraphics[scale=0.6]{../img/1-16.png}
@@ -516,15 +532,6 @@ Ableitung in x-Richtung
     \includegraphics[scale=0.6]{../img/1-17.png}
     \label{img/1-17}
 \end{figure}
-
-\begin{itemize}
-  \item Vorverarbeitung:
-    \begin{enumerate}
-      \item Bestimme Gradienten in allen Merkmalspunkten.
-      \item Rotiere Regionen um Merkmalspunkte so, dass Gradient in eine Richtung zeigt.
-      \item Extrahiere $V,W$ aus rotierten Regionen.
-    \end{enumerate}
-\end{itemize}
 \begin{figure}[htbp]
     \centering
     \includegraphics[scale=1]{../img/1-18.png}
@@ -594,7 +601,7 @@ Ableitung in x-Richtung
 \begin{itemize}
   \item SSD von zwei normalisierten Bildsegmenten $||V_n-W_n||_F^2=2(N-1)-2\text{tr}(W_n^\top V_n)$
   \item Die Normalized Cross Correlation der beiden Bildsegmente ist definiert als $\frac{1}{N-1}\text{tr}(W_n^\top V_n)$
-  \item Es gilt -1≤NCC≤1
+  \item Es gilt -1$\le$NCC$\le$1
   \item Zwei normalisierte Bildsegmente sind sich ähnlich, wenn
   \begin{itemize}
       \item SSD klein (wenig Unterschiede)

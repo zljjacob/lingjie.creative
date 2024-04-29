@@ -1,0 +1,36 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Definition of the Term Intelligence}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Artificial Intelligence in Production Engineering}{2}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Machine Learning on the Different Levels of Production}{2}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Example 1 - Job Order Planning for Assembly Lines}{2}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Example 2 - Minimization of Welding Distortions }{3}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}Introduction to the course and to Artificial Intelligence (AI)}{6}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Recommended literature}{7}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Data formats and sources}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Learning objectives}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Data formats and structure}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Data quality}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Data sources}{9}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Architectural model of the computer-integrated production}{9}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}4.2 Information flow}{9}{subsubsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.5}Summary}{11}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Databases and Data Cleansing}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Knowledge Discovery in Databases (KDD)}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Learning Objectives}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Databases}{12}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Functionality and Structure}{13}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Database Types}{13}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Relational Databases}{15}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}SQL}{16}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}Data Cleansing}{18}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Data Quality}{18}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Workflow of Data Cleansing}{19}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Inconsistencies and Duplicates}{19}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Missing Values}{20}{subsubsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}Noise}{22}{subsubsection.3.4.5}%
+\contentsline {subsubsection}{\numberline {3.4.6}Outliers}{23}{subsubsection.3.4.6}%
+\contentsline {subsubsection}{\numberline {3.4.7}Normalization}{25}{subsubsection.3.4.7}%
+\contentsline {subsubsection}{\numberline {3.4.8}Transformation}{26}{subsubsection.3.4.8}%
+\contentsline {subsubsection}{\numberline {3.4.9}Highly Correlated Data}{27}{subsubsection.3.4.9}%
+\contentsline {subsubsection}{\numberline {3.4.10}Dimensionality}{28}{subsubsection.3.4.10}%
+\contentsline {subsection}{\numberline {3.5}Data Warehouse}{29}{subsection.3.5}%
