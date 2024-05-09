@@ -5,6 +5,7 @@
 \usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
 \usepackage{ctex}
 \usepackage{tikz}
+\usepackage{pythonhighlight} % python代码块
 \usetikzlibrary{patterns}
 
 \geometry{
@@ -21,14 +22,12 @@
 
 \renewcommand{\contentsname}{Contents}
 
-% 修改图片标签名称为 "img"
-\renewcommand{\figurename}{Figure}
+\renewcommand{\figurename}{Figure} % 修改图片标签名称为 "img"
 
-% 修改表格标签名称为 "table"
-\renewcommand{\tablename}{Table}
+\renewcommand{\tablename}{Table} % 修改表格标签名称为 "table"
 
-% 在每个章节重置图片计数器
-\counterwithin{figure}{section}
+\counterwithin{figure}{section} % 在每个章节重置图片计数器
+\setlength{\parindent}{0pt} % 取消段落的第一行缩进
 
 \setlength{\parskip}{1em}
 

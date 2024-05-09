@@ -1,0 +1,124 @@
+\documentclass[8pt, a4paper, oneside, justified]{article}
+\usepackage{amsmath, amsthm, amssymb, graphicx}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
+\usepackage{tikz}
+\usepackage{pythonhighlight} % python代码块
+\usepackage{fontspec}
+\usepackage{setspace}
+
+\numberwithin{equation}{section}
+\usetikzlibrary{patterns}
+
+
+\setmainfont{Georgia} % 设置字体
+\onehalfspacing % 设置行距: 1.5倍行距 
+\geometry{
+    a4paper, % 页面尺寸
+    left=3cm, % 左边距
+    right=3cm, % 右边距
+    top=3cm, % 上边距
+    bottom=3cm, % 下边距
+}
+
+\title{Control for Robotics: From Optimal Control to Reinforcement Learning}
+\author{Lingjie Zhang}
+\date{2024 SS}
+
+\renewcommand{\contentsname}{Contents}
+
+\renewcommand{\figurename}{Figure} % 修改图片标签名称为 "img"
+
+\renewcommand{\tablename}{Table} % 修改表格标签名称为 "table"
+
+\counterwithin{figure}{section} % 在每个章节重置图片计数器
+\setlength{\parindent}{0pt} % 取消段落的第一行缩进
+
+\setlength{\parskip}{1em}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    \textbf{Assignment 1: Optimal Control and Dynamic Programming}
+\end{center}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+
+% Contents from here
+% 从这里开始往下写
+\section*{Problem 1.1 Finite Horizon Dynamic Programming}
+\stepcounter{section}
+\setcounter{equation}{0} % 重置公式计数器
+\addcontentsline{toc}{section}{Problem 1.1 Finite Horizon Dynamic Programming}
+\subsection*{(a)}
+\addcontentsline{toc}{section}{Problem 1.1 (a)}
+
+The policy found using the dynamic programming algorithm is expected to behave in a way 
+that minimizes the total cost over the given time horizon.
+
+Different values of \textit{q} and \textit{r} will change the robot's behavior as follows:
+\begin{itemize}
+    \item Increasing \textit{q} will increase penalty of position errors in the cost function, 
+    which leading to a policy that prioritizes minimizing position errors.
+    \item Increasion \textit{r} will increase penalty of control inputs in the cost function, 
+    which leading  to a policy that  prioritizes smoother control inputs to save energy.
+\end{itemize}
+
+\subsection*{(b)}
+\addcontentsline{toc}{section}{Problem 1.1 (b)}
+\paragraph*{· Dynamics}
+
+\begin{align}
+    x_{k+1}=x_k+u_k+w_k
+\end{align}
+
+\paragraph*{· Cost}
+
+\begin{align}
+    x^2_2+\sum\limits_{k=0}^{1}(qx_k^2+ru_k^2)
+\end{align}
+Let $q = 5/2$ and $r = 1$ and assume that $w_k=0$ for all $k$:
+\paragraph*{· Initialization}
+
+\begin{align}
+    J_2(x_2)=x_2^2
+\end{align}
+
+\paragraph*{· Recursion}~{}
+
+$\rhd \;Step\;k=1$
+\begin{align}
+    J_1(x_1)& = \min_ {u_1} (\frac{5}{2}xx_1^2+u_1^2+J_2(x_2)) \\
+    & = \min_ {u_1}(\frac{5}{2}x_1^2+u_1^2+(x_1+u_1)^2)\;(\text{sub dynamics}) \\
+    & = \min_ {u_1}(\frac{7}{2}x_1^2+2u_1x_1+2u_1^2)
+\end{align}
+\hspace{8pt} Solve for optimal $u_1$ by differentiating the cost and setting it to zero:
+\begin{align}
+    u_1=-\frac{x_1}{2}
+\end{align}
+\hspace{8pt} Substitute $u_1$ back to $J_1(x_1)$:
+\begin{align}
+    J_1(x_1)=3x_1^2
+\end{align}
+
+$\rhd \;Step\;k=0$
+\begin{align}
+    J_0(x_0) & = \min_ {u_0}(\frac{5}{2}x_0^2+u_0^2+J_1(x_1)) \\
+    & = \min_ {u_0}(\frac{11}{2}x_0^2+4u_0^2+6x_0u_0)
+\end{align}
+\hspace{8pt} Solve for optimal $u_0$ by differentiating the cost and setting it to zero:
+\begin{align}
+    u_0 = -\frac{3x_0}{4}
+\end{align}
+\hspace{8pt} Substitute $u_0$ back to $J_0(x_0)$:
+\begin{align}
+    J_0(x_0) = \frac{13}{4}x_0^2
+\end{align}
+
+\end{document}
