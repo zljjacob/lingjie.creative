@@ -619,6 +619,342 @@ Ableitung in x-Richtung
   \item Vergleiche die normalisierten Bildsegmente durch SSD oder NCC.
 \end{itemize}
 
+\newpage
+
+\section{Bildentstehung}
+
+\subsection{Das Lochkameramodell}
+
+\subsubsection{Abbildung durch eine dünne Linse}
+
+\begin{itemize}
+    \item Strahlen parallel zur optischen Achse werden so gebrochen, dass sie durch den Brennpunkt gehen.
+    \item Strahlen durch das optische Zentrum werden nicht abgelenkt.
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-1.png}
+    \label{img/2-1}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-2.png}
+    \label{img/2-2}
+\end{figure}
+
+\paragraph*{Herleitung der Abbildungsgleichung}
+
+\begin{itemize}
+    \item $|\frac{b}{B}| = \frac{z-f}{f}$
+    \item $|\frac{z}{Z}| = |\frac{b}{B}|$
+    \item Gleichung für dünne Linsen: $\frac{1}{|Z|} + \frac{1}{z} = \frac{1}{f}$
+\end{itemize}
+
+\subsubsection{Abbildung durch eine Lochkamera}
+
+\paragraph*{Idealisierte Annahmen}
+
+\begin{itemize}
+    \item Sehr kleine Öffnung vor der Linse
+    \item Beliebig großer Blickwinkel
+    \item Bild wird scharf auf Brennebene abgebildet
+    \item Es gilt: $b = -\frac{fB}{Z}$
+\end{itemize}
+
+\paragraph*{Abbildung eines Punktes im Raum auf die Brennebene}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-3.png}
+    \label{img/2-3}
+\end{figure}
+
+\begin{itemize}
+    \item Koordinaten von $P$ bzgl. optischem Zentrum der Kamera seien $X,Y,Z$
+    \item Dann sind die Koordinaten des Bildpunktes $(-\frac{fX}{Z}, -\frac{fY}{Z}, -f)$
+\end{itemize}
+
+\subsubsection{Frontales Lochkameramodell}
+
+\paragraph*{Projektion eines Punktes}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-4.png}
+    \label{img/2-4}
+\end{figure}
+
+\begin{itemize}
+    \item Koordinaten des Bildpunktes beim frontalen Lochkameramodell $(\frac{fX}{Z}, \frac{fY}{Z}, f)$
+    \item Ideale perspektivische Projektion: 
+    $$
+    \pi: \mathbb{R}^3\backslash \{(X,Y)-\text{Ebene}\}\to \mathbb{R}^2, \begin{bmatrix}
+        X \\
+        Y \\
+        Z
+    \end{bmatrix} 
+    \mapsto \frac{f}{Z}\begin{bmatrix}
+        X \\
+        Y
+    \end{bmatrix}
+    $$
+\end{itemize}
+
+\subsubsection{Abbildung durch eine Lochkammera}
+
+\paragraph*{Idealisierte Annahmen}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-5.png}
+    \label{img/2-5}
+\end{figure}
+
+\begin{itemize}
+    \item Dünne Linse
+    \item Kleine Blende
+    \item Beliebig großer Blickwinkel
+    \item Perspektivische Projektion:
+    $$
+    \pi: \mathbb{R}^3\backslash \{(X,Y)-\text{Ebene}\}\to \mathbb{R}^2, \begin{bmatrix}
+        X \\
+        Y \\
+        Z
+    \end{bmatrix} 
+    \mapsto \frac{f}{Z}\begin{bmatrix}
+        X \\
+        Y
+    \end{bmatrix}
+    $$
+\end{itemize}
+
+\subsubsection{Zusammenfassung}
+
+\begin{itemize}
+    \item Lochkameramodell
+    \item Ideale perspektivische Projektion: die Abbildung der Koordinaten des 3D Punktes 
+    auf die 2D-Koordinaten in der Brennebene
+\end{itemize}
+
+\subsection{Homogene Koordinaten}
+
+\subsubsection{Wiederholung: Lochkameramodell}
+
+\paragraph*{Bildpunkte und Geraden}
+
+\begin{itemize}
+    \item Alle Punkte auf einer Geraden durch das optische Zentrum werden auf denselben Bildpunkt abgebildet. 
+    \item Umgekehrt existiert zu jedem Bildpunkt genau eine Gerade. Dies wird im Lochkameramodell wiederholt.
+\end{itemize}
+
+\subsubsection{Der projektive Raum}
+
+\begin{itemize}
+    \item Zwei Vektoren $x,y\in\mathbb{R}^n$ nennen wir zueinander \textbf{äquivalen}t, 
+    falls ein $\lambda\neq 0$ existiert mit \( \lambda \neq 0 \). 
+    In diesem Fall schreiben wir $$x\sim y$$
+    \item Eine Gerade durch $x\neq 0$ können wir nun beschreiben als \textbf{Äquivalenzklasse}
+    $$[x]:=\{y\in\mathbb{R}^n|y\sim x\}$$
+    \item Die Menge aller Geraden im Raum heißt projektiver Raum.
+    $$\mathbb{P}_n = \{[x]|x\in\mathbb{R}^{n+1}\backslash \{0\}\}$$
+\end{itemize}
+
+\subsubsection{Homogene Koordinaten}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-6.png}
+    \label{img/2-6}
+\end{figure}
+
+\begin{itemize}
+    \item Normiert man die Längeneinheit auf die Brennweite, ist die Bildebene gegeben durch
+    $$BE=
+    \begin{Bmatrix}
+        \begin{bmatrix}
+            X \\
+            Y \\
+            Z
+        \end{bmatrix}\in\mathbb{R}^3\;|\;Z=1 \\
+    \end{Bmatrix}\
+    $$
+    \item Der Vektor $\begin{bmatrix}
+        X \\
+        Y \\
+        1
+    \end{bmatrix}$ heißt die \textbf{homogenen Koordinaten} von $\begin{bmatrix}
+        X \\
+        Y
+    \end{bmatrix}$
+    \item Allgemeine Definition: $x:=(X_1,\dots,X_n)^T\in\mathbb{R}^n$.
+    Dann heißt $x^{(hom)}:=(X_1,\dots,X_n,1)^T\in\mathbb{R}^{n+1}$ die homogenen Koordinaten von $x$
+\end{itemize}
+
+\subsubsection{Zusammenfassung}
+
+\begin{itemize}
+    \item Äquivalente Vektoren unterscheiden sich nur durch Multiplikation mit einer Zahl ungleich Null.
+    \item Homogene Koordinaten eines Vektors erhält man durch Hinzufügen einer weiteren Koordinate mit dem Wert Eins.
+\end{itemize}
+
+\subsection{Euklidische Bewegungen}
+
+\subsubsection{Motivation}
+
+\begin{itemize}
+    \item Zwei Bilder einer 3D-Szene aus verschiedenen Positionen.
+    \item Positionswechsel bestehen aus Rotation der Kamera und anschließender Translation.
+    \item Beschreibung der Kamerabewegung in Form von Koordinatenänderung eines festen Raumpunktes.
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../img/2-7.png}
+    \label{img/2-7}
+\end{figure}
+
+\subsubsection{Visualisierung}
+
+\textbf{Translation}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.36\textwidth]{../img/2-8.png}
+    \label{img/2-8}
+\end{figure}
+
+\vspace{1em}
+\textbf{Rotation}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.36\textwidth]{../img/2-9.png}
+    \label{img/2-9}
+\end{figure}
+
+
+\space
+\subsubsection{Euklidische Bewegungen}
+
+\paragraph*{Allgemein}
+
+\begin{itemize}
+    \item Die Matrizen $O(n):=\{O\in\mathbb{R}^{n\times n}|O^TO=I_n\}$ heißen orthogonale Matrizen.
+    \item Rotationen im $\mathbb{R}^n$ Raum werden beschrieben durch die speziellen orthogonalen Matrizen.
+    $$SO(n):=\{R\in\mathbb{R}^{n\times n}|R^TR=I_n, \det (R)=1\}$$
+    \item Euklidische Bewegungen durch die Koordinatenänderung $$g_{R,T}:
+    \mathbb{R}^n\to\mathbb{R}^n, \mathbf{P}\mapsto R\mathbf{P}+T$$
+    \item Seien $\mathbf{P}_1$ die Koordinaten eines Punktes bzgl. 
+    CF 1 und $\mathbf{P}_2$ die Koordinaten des selben Punktes bzgl. 
+    des bewegten CF 2, dann ist $\mathbf{P}_2=R\mathbf{P}_1+T$
+\end{itemize}
+
+\paragraph*{In homogenen Koordinaten}
+\begin{itemize}
+    \item In homogenen Koordinaten als Matrix-Vektor-Multiplikation
+    $$M=\begin{bmatrix}
+        R & T \\
+        0 & 1
+    \end{bmatrix}\in\mathbb{R}^{(n+1)\times(n+1)}, R\in SO(n), T\in \mathbb{R}^n$$
+    $$\mathbf{P}_2^{(hom)}=M\mathbf{P}_1^{hom}$$
+    \item Spezielle Euklidische Gruppe
+    $$SE(n) = \{M=\begin{bmatrix}
+        R & T \\
+        0 & 1
+    \end{bmatrix}|R\in SO(n), T\in\mathbb{R}^n\}\subset\mathbb{R}^{(n+1)\times (n+1)}$$
+\end{itemize}
+
+\paragraph*{Eigenschaften}
+
+\begin{itemize}
+    \item Verknüpfungen zweier eukl. Bewegungen ist wieder eine eukl. Bewegung 
+    $$M_1M_2 = \begin{bmatrix}
+        R_1 & T_1 \\
+        0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        R_2 & T_2 \\
+        0 & 1
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        R_1R_2 & R_1T_2+T_1 \\
+        0 & 1
+    \end{bmatrix}$$
+    \item Euklidische Bewegungen sind invertierbar:
+    $$M_{-1} = \begin{bmatrix}
+        R & T \\
+        0 & 1
+    \end{bmatrix}^{-1} = 
+    \begin{bmatrix}
+        R^T & -R^TT \\
+        0 & 1
+    \end{bmatrix}
+    $$
+\end{itemize}
+
+\subsubsection{Das Kreuzprodukt}
+
+\paragraph*{Definition}
+
+\begin{itemize}
+    \item Das Kreuzprodukt zwischen den Vektoren $\mathbf{u, v}\in\mathbb{R}^3$ ist definiert als
+    $$
+    \mathbf{u}\times\mathbf{v} = \begin{bmatrix}
+        u_1 \\ u_2 \\ u_3
+    \end{bmatrix}\times
+    \begin{bmatrix}
+        v_1 \\ v_2 \\ v_3
+    \end{bmatrix}
+    \begin{bmatrix}
+        u_2v_3-u_3v_2 \\
+        u_3v_1-u_1v_3 \\
+        u_1v_2-u_2v_1
+    \end{bmatrix}\in\mathbb{R}^3
+    $$
+    \item Es gilt: $<\mathbf{u}\times\mathbf{v},\mathbf{u}> = <\mathbf{u}\times\mathbf{v},\mathbf{v}> = 0$
+    und $\mathbf{u}\times\mathbf{v} = -\mathbf{v}\times\mathbf{u}$
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{../img/2-10.png}
+    \label{img/2-10}
+\end{figure}
+
+\paragraph*{Matrix-Vektor-Multiplikation}
+
+\begin{itemize}
+    \item Das Kreuzprodukt lässt sich schreiben als
+    $$
+    \mathbf{u}\times\mathbf{v} = \hat{\mathbf{u}}\mathbf{v},\;\text{mit}\;\; \hat{\mathbf{u}} = 
+    \begin{bmatrix}
+        0 & -u_3 & u_2 \\
+        u_3 & 0 & -u_1 \\
+        -u_2 & u_1 & 0
+    \end{bmatrix}\in \mathbb{R}^{3\times 3}
+    $$
+    \item Es gilt (für $A$ invertierbar): $\Hat{A\mathbf{v}} = \det (A)A^{-T}\hat{\mathbf{v}}A^{-1}$
+\end{itemize}
+
+\paragraph*{Eigenschaften Orthogonaler Transformationen}
+
+\begin{itemize}
+    \item Orthogonale Transformationen erhalten Skalarprodukt $<\mathbf{u,v} = <O\mathbf{u},O\mathbf{v}$
+    \item Euklidische Transformationen erhalten Abstand
+    \item Spezielle orthogonale Transformationen erhalten das Kreuzprodukt $R\mathbf{u}\times R\mathbf{v} = R(\mathbf{u}\times \mathbf{v})$
+\end{itemize}
+
+\subsubsection{Zusammenfassung}
+
+\begin{itemize}
+    \item Kamerabewegungen durch Koordinatenänderung eines festen Raumpunktes.
+    \item Koordinatenänderung durch euklidische Bewegungen.
+    \item Rotationen durch spezielle orthogonale Matrizen.
+    \item Euklidische Bewegung in homogenen Koordinaten durch Matrix-Vektor-Multiplikation.
+\end{itemize}
+
 
 
 \end{document}

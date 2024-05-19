@@ -7,6 +7,24 @@
 \usepackage{pythonhighlight} % python代码块
 \usepackage{fontspec}
 \usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{
+    language=Matlab,
+    frame=single,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\color{blue}, % 关键部分，设置标识符为蓝色
+}
 
 \numberwithin{equation}{section}
 \usetikzlibrary{patterns}
@@ -57,7 +75,7 @@
 \setcounter{equation}{0} % 重置公式计数器
 \addcontentsline{toc}{section}{Problem 1.1 Finite Horizon Dynamic Programming}
 \subsection*{(a)}
-\addcontentsline{toc}{section}{Problem 1.1 (a)}
+\addcontentsline{toc}{section}{1.1 (a)}
 
 The policy found using the dynamic programming algorithm is expected to behave in a way 
 that minimizes the total cost over the given time horizon.
@@ -71,11 +89,11 @@ Different values of \textit{q} and \textit{r} will change the robot's behavior a
 \end{itemize}
 
 \subsection*{(b)}
-\addcontentsline{toc}{section}{Problem 1.1 (b)}
+\addcontentsline{toc}{section}{1.1 (b)}
 \paragraph*{· Dynamics}
 
 \begin{align}
-    x_{k+1}=x_k+u_k+w_k
+    x_{k+1}=x_k+u_k+w_k \\
 \end{align}
 
 \paragraph*{· Cost}
@@ -94,9 +112,9 @@ Let $q = 5/2$ and $r = 1$ and assume that $w_k=0$ for all $k$:
 
 $\rhd \;Step\;k=1$
 \begin{align}
-    J_1(x_1)& = \min_ {u_1} (\frac{5}{2}xx_1^2+u_1^2+J_2(x_2)) \\
-    & = \min_ {u_1}(\frac{5}{2}x_1^2+u_1^2+(x_1+u_1)^2)\;(\text{sub dynamics}) \\
-    & = \min_ {u_1}(\frac{7}{2}x_1^2+2u_1x_1+2u_1^2)
+    J_1(x_1)& = \min_ {u_1} \mathbb{E}_{w_1}[\frac{5}{2}x_1^2+u_1^2+J_2(x_2)] \\
+    & = \min_ {u_1}\mathbb{E}_{w_1}[\frac{5}{2}x_1^2+u_1^2+(x_1+u_1)^2]\;(\text{sub dynamics}) \\
+    & = \min_ {u_1}\mathbb{E}_{w_1}[\frac{7}{2}x_1^2+2u_1x_1+2u_1^2]
 \end{align}
 \hspace{8pt} Solve for optimal $u_1$ by differentiating the cost and setting it to zero:
 \begin{align}
@@ -109,16 +127,764 @@ $\rhd \;Step\;k=1$
 
 $\rhd \;Step\;k=0$
 \begin{align}
-    J_0(x_0) & = \min_ {u_0}(\frac{5}{2}x_0^2+u_0^2+J_1(x_1)) \\
-    & = \min_ {u_0}(\frac{11}{2}x_0^2+4u_0^2+6x_0u_0)
+    J_0(x_0) & = \min_ {u_0}\mathbb{E}_{w_0}[\frac{5}{2}x_0^2+u_0^2+J_1(x_1)] \\
+    & = \min_ {u_0}[\frac{11}{2}x_0^2+4u_0^2+6x_0u_0]
 \end{align}
 \hspace{8pt} Solve for optimal $u_0$ by differentiating the cost and setting it to zero:
 \begin{align}
-    u_0 = -\frac{3x_0}{4}
+    u_0 = -\frac{3x_0}{4} = -\frac{3\cdot (-1)}{4} = \frac{3}{4}
 \end{align}
 \hspace{8pt} Substitute $u_0$ back to $J_0(x_0)$:
 \begin{align}
-    J_0(x_0) = \frac{13}{4}x_0^2
+    J_0(x_0) = \frac{13}{4}x_0^2 = \frac{13}{4}
 \end{align}
+
+For $x_0 = -1$:
+\begin{align}
+    x_1 = x_0 + u_0 = -1 + \frac{3}{4} = -\frac{1}{4}
+\end{align}
+
+\paragraph*{The answer:}~{}
+
+\begin{itemize}
+    \item Optimal policy:
+    $\pi^* = \{-\frac{3x_0}{4}, -\frac{x_1}{2}\} = \{\frac{3}{4}, \frac{1}{8}\}$
+    \item $J(x_0):=\frac{13}{4}x_0^2 = \frac{13}{4}$
+    
+\end{itemize}
+
+\subsection*{(c)}
+\addcontentsline{toc}{section}{1.1 (c)}
+
+\begin{align}
+    & \text{Var} [w_k] \;= \mathbb{E}[w_k^2]-\mathbb{E}[w_k]^2 \\
+    \Rightarrow\;\;\; & \mathbb{E}[w_k^2] \;\;\;\;= 1+1=2
+\end{align}
+
+We keep $q = 5/2$ and $r = 1$,but now assume there is some variation:
+\paragraph*{· Initialization}
+
+\begin{align}
+    J_2(x_2)=x_2^2
+\end{align}
+
+\paragraph*{· Recursion}~{}
+
+$\rhd \;Step\;k=1$
+\begin{align}
+    J_1(x_1)& = \min_ {u_1} \mathbb{E}_{w_1}[\frac{5}{2}x_1^2+u_1^2+J_2(x_2)] \\
+    & = \min_ {u_1}(\frac{5}{2}x_1^2+u_1^2+(x_1+u_1+w_1)^2)\;(\text{sub dynamics}) \\
+    & = \min_ {u_1}(\frac{7}{2}x_1^2+2u_1^2+w_1^2+2x_1u_1+2x_1w_1+2u_1w_1) \\
+    & = \min_ {u_1}(\frac{7}{2}x_1^2+2u_1^2+2+2x_1u_1+2x_1+2u_1)
+\end{align}
+\hspace{8pt} Solve for optimal $u_1$ by differentiating the cost and setting it to zero:
+\begin{align}
+    u_1=-\frac{x_1+1}{2}
+\end{align}
+\hspace{8pt} Substitute $u_1$ back to $J_1(x_1)$:
+\begin{align}
+    J_1(x_1)=3x_1^2+x_1+\frac{3}{2}
+\end{align}
+
+$\rhd \;Step\;k=0$
+\begin{align}
+    J_0(x_0) & = \min_ {u_0}\mathbb{E}_{w_0}[\frac{5}{2}x_0^2+u_0^2+J_1(x_1)] \\
+    & = \min_ {u_0}\mathbb{E}_{w_0}[\frac{5}{2}x_0^2+u_0^2+(3(x_0+u_0+w_0)^2+x_0+u_0+w_0+\frac{3}{2})] \\
+    & = \min_ {u_0}(\frac{11}{2}x_0^2+4u_0^2+6x_0u_0+7x_0+7u_0+\frac{17}{2})
+\end{align}
+\hspace{8pt} Solve for optimal $u_0$ by differentiating the cost and setting it to zero:
+\begin{align}
+    u_0 = -\frac{6x_0+7}{8} = -\frac{1}{8}
+\end{align}
+\hspace{8pt} Substitute $u_0$ back to $J_0(x_0)$:
+\begin{align}
+    J_0(x_0) = \frac{13}{4}x_0^2+\frac{7}{4}x_0+\frac{87}{16}
+\end{align}
+
+For $x_0 = -1$:
+\begin{align}
+    x_1 = x_0 + u_0 + w_0 = -1 - \frac{1}{8} + 1 = -\frac{1}{8}
+\end{align}
+
+\paragraph*{The answer:}~{}
+
+\begin{itemize}
+    \item Optimal policy: 
+    $\pi^* = \{-\frac{6x_0+7}{8}, -\frac{x_1+1}{2}\} = \{-\frac{1}{8}, -\frac{7}{16}\}$
+    \item $J(x_0):=\frac{13}{4}x_0^2+\frac{7}{4}x_0+\frac{87}{16} = \frac{111}{16}$
+    
+\end{itemize}
+
+\subsection*{(d)}
+\addcontentsline{toc}{section}{1.1 (d)}
+
+Disturbance is not considered in (b), there are no constant terms in the optimal policy, 
+and no linear terms and constant terms in $J(x_0)$;
+Disturbance is considered in (c), there are constant terms in the optimal policy, 
+and there are linear terms and constant terms in $J(x_0)$;
+
+\newpage
+
+\section*{Problem 1.2 Dynamic Programming for a Robot Vacuum Cleaner}
+\stepcounter{section}
+\setcounter{equation}{0} % 重置公式计数器
+\addcontentsline{toc}{section}{Problem 1.2 Dynamic Programming for a Robot Vacuum Cleaner}
+
+\begin{lstlisting}
+% cfr_a1_2: Main script for Problem 1.2 Dynamic Programming for a 
+%               Robot Vacuum Cleaner.
+%
+% --
+% Control for Robotics
+% Summer 2023
+% Assignment 1
+%
+% --
+% Technical University of Munich
+% Learning Systems and Robotics Lab
+%
+% Course Instructor:
+% Angela Schoellig
+% schoellig@utias.utoronto.ca
+%
+% Teaching Assistants: 
+% SiQi Zhou: siqi.zhou@tum.de
+% Lukas Brunke: lukas.brunke@tum.de
+%
+% --
+% Revision history
+% [22.01.17, LB]    first version
+% [22.01.23, LB]    added 2 (c) to the code, removed N
+
+clear all
+close all
+clc
+
+%% calculate optimal control using dynamic programming
+
+% initialize the grid world
+grid = GridWorld();
+
+% allocate arrays for optimal control inputs and cost-to-go 
+U = zeros(grid.num_rows, grid.num_columns);
+J = zeros(grid.num_rows, grid.num_columns);
+
+% set the cost for the obstacle
+J(grid.obstacle_pos(1), grid.obstacle_pos(2)) = inf;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 2 (a)
+epsilon = 1e-6; % Convergence basis
+max_iter = 1000; % Maximum number of iterations
+[J, U] = compute_optimal_policy(grid, epsilon, max_iter, J, U);
+% Function at the end
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Simulate robot vacuum cleaner
+x_0 = [4; 3];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 2 (b)
+
+optimal_actions = plot_optimal_trajectory(grid, x_0, U);
+% Function at the end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+grid.plot_moves(x_0, optimal_actions)
+
+% %% Simulate robot vacuum cleaner
+x_0 = [4; 3];
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 2 (c)
+grid = GridWorld();
+grid.cost_dirt = 5;
+grid.stage_cost(1, 1) = grid.cost_dirt;
+grid.stage_cost(1, 2) = grid.cost_dirt;
+grid.stage_cost(2, 1) = grid.cost_dirt;
+grid.stage_cost(3, 1) = grid.cost_dirt;
+grid.stage_cost(3, 2) = grid.cost_dirt;
+% allocate arrays for optimal control inputs and cost-to-go 
+U1 = zeros(grid.num_rows, grid.num_columns);
+J1 = zeros(grid.num_rows, grid.num_columns);
+
+% set the cost for the obstacle
+J1(grid.obstacle_pos(1), grid.obstacle_pos(2)) = inf;
+epsilon = 1e-6; % Convergence basis
+max_iter = 1000; % Maximum number of iterations
+[J1, U1] = compute_optimal_policy(grid, epsilon, max_iter, J1, U1);
+optimal_actions = plot_optimal_trajectory(grid, x_0, U1);
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+grid.plot_moves(x_0, optimal_actions)
+
+function [J, U] = compute_optimal_policy(grid, epsilon, max_iter, J, U)
+    iter = 0;
+    while true
+        iter = iter + 1;
+        old_J = J;
+        for i = 1:grid.num_rows
+            for j = 1:grid.num_columns
+                state = [i; j];
+                actions = grid.available_actions(state);
+                min_cost = inf;
+                best_action = -1;
+                for a = actions
+                    next_state = grid.next_state(state, a);
+                    cost = grid.stage_cost(next_state(1), next_state(2));
+                    if cost < inf
+                        new_cost = cost + old_J(next_state(1), next_state(2));
+                        if new_cost < min_cost
+                            min_cost = new_cost;
+                            best_action = a;
+                        end
+                    end
+                end
+                J(i, j) = min_cost;
+                U(i, j) = best_action;
+            end
+        end
+        if max(max(abs(J - old_J))) < epsilon || iter >= max_iter
+            break;
+        end
+    end
+end
+
+function optimal_actions = plot_optimal_trajectory(grid, x_0, U)
+    optimal_actions = [];
+    x = x_0;
+    trajectory = [x'];
+
+    while true
+        action = U(x(1), x(2));
+        optimal_actions = [optimal_actions, action];
+        x_next = grid.next_state(x, action);
+        trajectory = [trajectory; x_next'];
+        x = x_next;
+        if all(x == grid.charger_pos)
+            break;
+        end
+    end
+
+    figure;
+    hold on;
+    
+    for i = 1:grid.num_rows
+        for j = 1:grid.num_columns
+            if grid.stage_cost(i, j) == grid.cost_obstacle
+                fill([j-1 j j j-1], [i-1 i-1 i i], 'k'); % obstacle
+            elseif grid.stage_cost(i, j) == grid.cost_dirt
+                fill([j-1 j j j-1], [i-1 i-1 i i], 'y'); % dirt
+            elseif grid.stage_cost(i, j) == grid.cost_charger
+                fill([j-1 j j j-1], [i-1 i-1 i i], 'g'); % charger
+            elseif grid.stage_cost(i, j) == grid.cost_carpet
+                fill([j-1 j j j-1], [i-1 i-1 i i], 'm'); % carpet
+            else
+                fill([j-1 j j j-1], [i-1 i-1 i i], 'w'); % blank
+            end
+            plot([j-1 j-1], [i-1 i], 'k');
+            plot([j-1 j], [i i], 'k');
+        end
+    end
+    
+    plot(trajectory(:, 2)-0.5, trajectory(:, 1)-0.5, 'r', 'LineWidth', 2);
+    legend('Dirt', 'Optimal trajectory', 'Location','northeastoutside');
+    set(gca, 'YDir', 'reverse');
+    yticks(1:grid.num_rows);
+    yticklabels(arrayfun(@num2str, flip(1:grid.num_rows), 'UniformOutput', false));
+    set(gca, 'YTick', [], 'XTick', []);
+    xlabel('Column');
+    ylabel('Row');
+    title('Robot Vacuum Cleaner Trajectory');
+    
+    for i = 1:grid.num_rows
+        for j = 1:grid.num_columns
+            if grid.stage_cost(i, j) == grid.cost_dirt
+                text(j-0.5, i-0.5, 'Dirt', 'HorizontalAlignment', 'center', ...
+                'VerticalAlignment', 'middle');
+            elseif grid.stage_cost(i, j) == grid.cost_charger
+                text(j-0.5, i-0.5, 'Charger', 'HorizontalAlignment', 'center', ...
+                'VerticalAlignment', 'middle');
+            elseif grid.stage_cost(i, j) == grid.cost_carpet
+                text(j-0.5, i-0.5, 'Carpet', 'HorizontalAlignment', 'center', ...
+                'VerticalAlignment', 'middle');
+            elseif grid.stage_cost(i, j) == grid.cost_obstacle
+                text(j-0.5, i-0.5, 'Obstacle', 'HorizontalAlignment', 'center', ...
+                'VerticalAlignment', 'middle', 'Color', 'w');
+            end
+        end
+    end
+    hold off;
+end
+\end{lstlisting}
+
+\subsection*{(a)}
+\addcontentsline{toc}{section}{1.2 (a)}
+
+Run the code, we can get cost-to-go and optimal policies:
+\begin{lstlisting}
+    J =
+     13    12     6     0     0
+     14   Inf    12     6     0
+     15    16    17    12     6
+     16    17    23    18    24
+    U =
+     2     2     2     2     0
+     1    -1     1     1     1
+     1     4     4     1     1
+     1     1     1     1     4
+\end{lstlisting}
+
+\subsection*{(b)}
+\addcontentsline{toc}{section}{1.2 (b)}
+
+Run the code, and we can get the map:
+\begin{lstlisting}
+    map =
+     6     7     8     9    10
+     5     0     0     0     0
+     4     3     2     0     0
+     0     0     1     0     0
+\end{lstlisting}
+
+The robot will first move towards the dirt, then pass through all dirts, 
+and then go straight to the charger.
+
+\subsection*{(c)}
+\addcontentsline{toc}{section}{1.2 (c)}
+
+Run the code, and we can get optimal policy and the map:
+\begin{lstlisting}
+    U1 =
+     2     2     2     2     0
+     1    -1     1     1     1
+     1     2     1     1     1
+     1     1     1     1     4
+    map =
+     0     0     4     5     6
+     0     0     3     0     0
+     0     0     2     0     0
+     0     0     1     0     0
+\end{lstlisting}
+The robot moves straight up, then to the right, and finally to the Charger
+
+\subsection*{(d)}
+\addcontentsline{toc}{section}{1.2 (d)}
+\begin{enumerate}
+    \item Set a reward for leaving the charging station to encourage the robot to move;
+    \item Set lower costs for dirts to make sure that clean these dirts a priority for the robot;
+    \item Set lower costs for the paths between dirts to make sure that the robot will 
+    find the efficient way to move.
+    \item After all dirts are cleaned, make the cost of returning to the charging station the 
+    lowest among all other cells to make sure the robot will return.
+    \item Obstacle and carpet have a high cost.
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 1.3 Approximate Dynamic Programming}
+\stepcounter{section}
+\setcounter{equation}{0} % 重置公式计数器
+\addcontentsline{toc}{section}{Problem 1.3 Approximate Dynamic Programming}
+
+\begin{lstlisting}
+% cfr_a1_3: Main script for Problem 1.3 Approximate Dynamic Programming.
+%
+% adapted from: Borrelli, Francesco: "ME 231 Experiential Advanced Control
+% Design I"
+%
+% --
+% Control for Robotics
+% Summer 2023
+% Assignment 1
+%
+% --
+% Technical University of Munich
+% Learning Systems and Robotics Lab
+%
+% Course Instructor:
+% Angela Schoellig
+% schoellig@utias.utoronto.ca
+%
+% Teaching Assistants: 
+% SiQi Zhou: siqi.zhou@tum.de
+% Lukas Brunke: lukas.brunke@tum.de
+%
+% --
+% Revision history
+% [22.01.17, LB]    first version
+% [22.01.23, LB]    added 2 (c) to the code, removed N
+%
+% --
+% Revision history
+% [22.01.17, LB]    first version
+% [22.01.24, LB]    updated horizon and initial state
+
+clear all
+close all
+clc
+
+%% set up system
+
+% inverted pendulum parameters
+l = 1.0; % length
+g = 9.81; % gravitational constant
+m = 1.0; % mass
+
+% create inverted pendulum system
+sys = InvertedPendulum(l, g, m);
+
+% controller parameters
+Q = diag([1, 0.1]);
+R = 1;
+N = 25;
+
+% linearization point
+x_up = [pi; 0];
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 3 (a)
+%% Linearize the nonlinear continuous-time control system
+
+% Calculate the Jacobian matrix around the upright position x_up = [pi; 0] with no control input
+% Define the system dynamics function
+f = @(x) [x(2); -g/l * sin(x(1)) + (1/m*l^2).* u];
+% A_c and B_c
+A_c = [0, 1; -g/l * cos(x_up(1)), 0];
+B_c = [0; 1];
+
+save('a1_3.mat', 'A_c', 'B_c');
+%% Discretize the continuous-time control system
+
+% Sampling time
+Delta_t = 0.1;
+% Use Matlab's c2d function to discretize the system
+sys_d = c2d(ss(A_c, B_c, eye(2), 0), Delta_t);
+% Extract discrete-time system matrices
+A_d = sys_d.A;
+B_d = sys_d.B;
+
+save('a1_3.mat', 'A_d', 'B_d');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% cost functions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 3 (b)
+
+stage_cost = @(x, u) x' * Q * x + u' * R * u;
+initial_cost_to_go = @(x) x' * Q * x;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% calculate optimal control using dynamic programming and gridding
+
+% grid state-space
+num_points_x1 = 10;
+num_points_x2 = 5;
+X1 = linspace(-pi/4, pi/4, num_points_x1);
+X2 = linspace(-pi/2, pi/2, num_points_x2);
+
+% allocate arrays for optimal control inputs and cost-to-go 
+U = zeros(num_points_x1, num_points_x2);
+J = zeros(num_points_x1, num_points_x2);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: YOUR CODE HERE - Exercise 3 (c)
+
+% Initialize J with initial cost-to-go
+for i = 1:num_points_x1
+    for j = 1:num_points_x2
+        x = [X1(i); X2(j)];
+        J(i,j) = initial_cost_to_go(x);
+    end
+end
+
+% Dynamic programming to compute optimal policy
+for k = N-1:-1:0
+    J_new = J;
+    for i = 1:num_points_x1
+        for j = 1:num_points_x2
+            x = [X1(i); X2(j)];
+            min_cost = inf;
+            optimal_u = 0;
+            for u = -1:0.1:1
+                x_next = A_d * x + B_d * u;
+                % Interpolate cost-to-go for x_next
+                cost_to_go = interp2(X1, X2, J', x_next(1), x_next(2), 'spline');
+                cost = stage_cost(x, u) + cost_to_go;
+                if cost < min_cost
+                    min_cost = cost;
+                    optimal_u = u;
+                end
+            end
+            J_new(i, j) = min_cost;
+            U(i, j) = optimal_u;
+        end
+    end
+    J = J_new;
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% plot optimal control and cost-to-go
+figure
+subplot(1, 2, 1)
+surf(X1, X2, U')
+xlabel('x_1')
+ylabel('x_2')
+zlabel('u')
+subplot(1, 2, 2)
+surf(X1, X2, J')
+xlabel('x_1')
+ylabel('x_2')
+zlabel('J')
+
+%% apply control law and simulate inverted pendulum
+% create the controlled inverted pendulum system
+control_sys = InvertedPendulum(l, g, m, X1, X2, U, x_up);
+
+% initial condition
+x0 = x_up + [-pi/6; 0];
+
+% duration of simulation
+t = [0, 10];
+
+% simulate control system
+[t, x] = ode45(@control_sys.controlled_dynamics, t, x0);
+
+% determine control inputs from trajectory
+u = zeros(size(t));
+for i = 1 : length(t)
+    u(i) = control_sys.mu(x(i, :)' - x_up);
+end
+
+%% plot state and input trajectories
+figure
+subplot(2, 1, 1)
+hold on
+plot(t, x(:, 1))
+plot(t, x(:, 2))
+xlabel('t')
+ylabel('x_1 and x_2')
+hold off
+legend('\theta','d\theta/dt')
+grid on
+subplot(2, 1, 2)
+plot(t, u)
+xlabel('t')
+ylabel('u')
+grid on
+\end{lstlisting}
+
+\subsection*{(a)}
+\addcontentsline{toc}{section}{1.3 (a)}
+
+\begin{lstlisting}
+% TODO: YOUR CODE HERE - Exercise 3 (a)
+%% Linearize the nonlinear continuous-time control system
+
+% Calculate the Jacobian matrix around the upright position x_up = [pi; 0] with no control input
+% Define the system dynamics function
+f = @(x) [x(2); -g/l * sin(x(1)) + (1/m*l^2).* u];
+% A_c and B_c
+A_c = [0, 1; -g/l * cos(x_up(1)), 0];
+B_c = [0; 1];
+
+save('a1_3.mat', 'A_c', 'B_c');
+%% Discretize the continuous-time control system
+
+% Sampling time
+Delta_t = 0.1;
+% Use Matlab's c2d function to discretize the system
+sys_d = c2d(ss(A_c, B_c, eye(2), 0), Delta_t);
+% Extract discrete-time system matrices
+A_d = sys_d.A;
+B_d = sys_d.B;
+
+save('a1_3.mat', 'A_d', 'B_d');
+\end{lstlisting}
+
+Run the code, get:
+\begin{lstlisting}
+    A_c =
+         0    1.0000
+    9.8100         0
+
+    B_c =
+        0
+        1
+
+    A_d =
+        1.0495    0.1016
+        0.9971    1.0495
+
+    B_d =
+        0.0050
+        0.1016
+\end{lstlisting}
+
+\subsection*{(b)}
+\addcontentsline{toc}{section}{1.3 (b)}
+
+\begin{lstlisting}
+% TODO: YOUR CODE HERE - Exercise 3 (b)
+
+stage_cost = @(x, u) x' * Q * x + u' * R * u;
+initial_cost_to_go = @(x) x' * Q * x;
+\end{lstlisting}
+
+\subsection*{(c)}
+\addcontentsline{toc}{section}{1.3 (c)}
+
+Yes, the controller stabilize the system at the upright position.
+
+\subsection*{(d)}
+\addcontentsline{toc}{section}{1.3 (d)}
+
+\begin{itemize}
+    \item \textbf{Effect of $Q$:} \\
+    $Q$ controls the weighting of the state variables, indicating their impact on the cost function. 
+    If certain states have a greater impact on the system's performance, larger values can be 
+    assigned to the corresponding elements in $Q$ to emphasize their importance.
+    \item \textbf{Effect of $r$:} \\
+    $r$ controls the weighting of the control input, indicating its impact on the cost function. 
+    Higher values of $r$ imply a greater emphasis on minimizing the magnitude of the control input, 
+    whereas smaller values of $r$ indicate a willingness to allow larger control inputs.
+\end{itemize}
+
+\subsection*{(e)}
+\addcontentsline{toc}{section}{1.3 (e)}
+In a high-dimensional system, the computational complexity will be much higher than 
+that of two-dimensional systems, which is likely to bring about curse of dimensionality 
+in optimization. Therefore, some measures need to be considered.
+\begin{itemize}
+    \item Provide more memory and computational requirements.
+    \item Use more efficient interpolation methods.
+    \item Increase the number of iterations and iteration time.
+    \item Consider using parallel computing.
+\end{itemize}
+
+\newpage
+
+\section*{Problem 1.4 Infinite Horizon Dynamic Programming}
+\stepcounter{section}
+\setcounter{equation}{0} % 重置公式计数器
+\addcontentsline{toc}{section}{Problem 1.4 Infinite Horizon Dynamic Programming}
+
+\subsection*{(a)}
+\addcontentsline{toc}{section}{1.4 (a)}
+
+\begin{align}
+    y_k & = x_k+v_k \\
+    u_k & = -\frac{1}{2}y_k \\
+    \Rightarrow u_k & = -\frac{1}{2}(x_k + v_k) \\
+    x_{k+1} & =x_k + u_k + w_k \\
+    x_{k+1} & =x_k -\frac{1}{2}(x_k + v_k) + w_k \\
+\end{align}
+So the closed-loop dynamics:
+\begin{align}
+    x_{k+1} = \frac{1}{2}x_k - \frac{1}{2}v_k + w_k
+\end{align}
+
+\subsection*{(b)}
+\addcontentsline{toc}{section}{1.4 (b)}
+
+Considering that the expected values of $v_k$ and $w_k$ are zero:
+\begin{align}
+    \mathbb{E}[v_k] = 0 \\
+    \mathbb{E}[w_k] = 0
+\end{align}
+
+Taking the expectation of the closed-loop dynamics equation:
+\begin{align}
+    \mathbb{E}[x_{k+1}] = \mathbb{E}[\frac{1}{2}x_k - \frac{1}{2}v_k + w_k]
+\end{align}
+Since expectation is a linear operator:
+\begin{align}
+    \mathbb{E}[x_{k+1}] = \frac{1}{2}\mathbb{E}[x_k] - \frac{1}{2}\mathbb{E}[v_k] + \mathbb{E}[w_k] \\
+    \mathbb{E}[x_{k+1}] = \frac{1}{2}\mathbb{E}[x_k] - \frac{1}{2}\cdot 0 + 0 \\
+    \mathbb{E}[x_{k+1}] = \frac{1}{2}\mathbb{E}[x_k]
+\end{align}
+So the eigenvalue of this system is $r = \frac{1}{2}$, and $|r| = \frac{1}{2} < 1$, 
+so this closed-loop system is stable.
+
+\subsection*{(c)}
+\addcontentsline{toc}{section}{1.4 (c)}
+\begin{align}
+    \text{Var}(v_k) & = \mathbb{E}[v_k^2] - \mathbb{E}[v_k]^2 = 1 \\
+    \text{Var}(w_k) & = \mathbb{E}[w_k^2] - \mathbb{E}[w_k]^2 = 1
+\end{align}
+\textbf{Variance of} $x_k$
+\begin{align}
+    & \text{Var}(x_{k+1}) = \text{Var}(\frac{1}{2}x_k-\frac{1}{2}v_k+w_k) \\
+    & \text{Var}(x_{k+1}) = (\frac{1}{2})^2\text{Var}(x_k) + (\frac{1}{2})^2\text{Var}(v_k) + \text{Var}(w_k) \\
+    & \text{Var}(x_{k+1}) = \frac{1}{4}\text{Var}(x_k) + \frac{1}{4} + 1 = \frac{1}{4}\text{Var}(x_k) + \frac{5}{4}
+\end{align}
+
+At steady state: $\text{Var}(x_{k+1}) = \text{Var}(x_{k})$, so:
+\begin{align}
+    \text{Var}(x_{k+1}) & = \frac{1}{4}\text{Var}(x_k) + \frac{5}{4} \\
+    \Rightarrow \text{Var}(x_{k}) & = \frac{5}{3}
+\end{align}
+
+\textbf{Variance of} $u_k$
+\begin{align}
+    u_k & = -\frac{1}{2}(x_k+v_k) \\
+    \text{Var}(u_k) & = \text{Var}(-\frac{1}{2}(x_k + v_k)) \\
+    \text{Var}(u_k) & = (-\frac{1}{2})^2\cdot\text{Var}(x_k + v_k) \\
+    \text{Var}(u_k) & = \frac{1}{4}\cdot (\frac{5}{3} + 1) = \frac{2}{3}
+\end{align}
+
+Because the goal is to move the robot's position to $x=0$. So $\mathbb{E}[x_k] = 0$ 
+and $\mathbb{E}[u_k] = 0$
+
+So: 
+\begin{align}
+    \mathbb{E}[x_k^2] = \text{Var}[x_k] + \mathbb{E}[x_k]^2 = \frac{5}{3} \\
+    \mathbb{E}[u_k^2] = \text{Var}[u_k] + \mathbb{E}[u_k]^2 = \frac{2}{3}
+\end{align}
+
+So the infinite horizon cost $J$:
+\begin{align}
+    J & = \mathbb{E}_{w_k,v_k}[\frac{x_k^2}{2}+u_k^2] \\
+    J & = \frac{1}{2}\cdot \mathbb{E}[x_k^2] + \mathbb{E}[u_k^2] \\
+    J & = \frac{1}{2}\cdot \frac{5}{3} + \frac{2}{3} \\
+    J & = \frac{3}{2}
+\end{align}
+
+\subsection*{(d)}
+\addcontentsline{toc}{section}{1.4 (d)}
+
+The \textit{Algebraic Riccatti equation}
+\begin{align}
+    P = A^TPA-(A^TPB)(R+B^TPB)^{-1}(B^TPA)+Q
+\end{align}
+
+Because there is no noise for this problem, so 
+\begin{align}
+    x_{k+1} & = x_k + u_k \\
+    y_k & = x_k
+\end{align}
+
+So $A = 1, B = 1, Q = \frac{1}{2}, R = 1$
+\begin{align}
+    & P = 1\cdot P\cdot 1-(1\cdot P\cdot 1)(1+1\cdot P\cdot 1)^{-1}(1\cdot P\cdot 1)+\frac{1}{2} \\
+    \Rightarrow & P = 1 \;\text{or} \;P = -\frac{1}{2}
+\end{align}
+
+The optimal feedback gain $\alpha$ is given by:
+\begin{align}
+    & \alpha = -(B^TPB+R)^{-1}(B^TPA) \\
+    & \alpha = -(P + 1)^{-1}(P) \\
+    & \alpha = -\frac{1}{2}\;\text{or}\;\alpha = \frac{1}{4}
+\end{align}
+Because $\alpha<0$, so the optimal feedback gain $\alpha = -\frac{1}{2}$.
 
 \end{document}
